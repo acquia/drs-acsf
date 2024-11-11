@@ -36,10 +36,10 @@ echo "Running DRS deploy tasks on $uri domain in $env environment on the $sitegr
 # Run drs drupal:update tasks. The trailing slash behind the domain works
 # around a bug in Drush < 9.6 for path based domains: "domain.com/subpath/" is
 # considered a valid URI but "domain.com/subpath" is not.
-drush cr --uri=$domain
-drush updb -y --uri=$domain
-drush cim -y --uri=$domain || drush cim -y --uri=$domain
-drush cr --uri=$domain
+drush cr --uri=$domain/
+drush updb -y --uri=$domain/
+drush cim -y --uri=$domain/ || drush cim -y --uri=$domain/
+drush cr --uri=$domain/
 
 # Clean up the drush cache directory.
 echo "Removing temporary drush cache files."
