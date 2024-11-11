@@ -33,10 +33,13 @@ uri=`/usr/bin/env php /mnt/www/html/$sitegroup.$env/hooks/acquia/uri.php $sitegr
 
 echo "Running DRS deploy tasks on $uri domain in $env environment on the $sitegroup subscription."
 
-# Run blt drupal:update tasks. The trailing slash behind the domain works
+# Run drs drupal:update tasks. The trailing slash behind the domain works
 # around a bug in Drush < 9.6 for path based domains: "domain.com/subpath/" is
 # considered a valid URI but "domain.com/subpath" is not.
-drush drupal:update --uri=$domain/ --verbose --no-interaction
+drush cr --uri=$domain
+drush updb -y --uri=$domain
+drush cim -y --uri=$domain || drush cim -y --uri=$domain
+drush cr --uri=$domain
 
 # Clean up the drush cache directory.
 echo "Removing temporary drush cache files."
