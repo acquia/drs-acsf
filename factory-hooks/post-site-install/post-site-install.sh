@@ -28,10 +28,10 @@ internal_domain="$4"
 drush="/mnt/www/html/$sitegroup.$env/vendor/bin/drush"
 
 # Execute the updates.
-drush cr --uri=$domain
-drush updb -y --uri=$domain
-drush cim -y --uri=$domain || drush cim -y --uri=$domain
-drush cr --uri=$domain
+drush cr --uri=$domain/
+drush updb -y --uri=$domain/
+drush cim -y --uri=$domain/ || drush cim -y --uri=$domain/
+drush cr --uri=$domain/
 result=$?
 
 set +v
